@@ -6,13 +6,13 @@
 #    By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/09 01:02:08 by hang              #+#    #+#              #
-#    Updated: 2024/05/16 18:55:57 by hang             ###   ########.fr        #
+#    Updated: 2024/07/18 17:43:52 by hang             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 PROG	= so_long
 
-SRCS 	= mlx_test.c
+SRCS 	= srcs/so_long.c srcs/errors.c srcs/map.c
 OBJS 	= ${SRCS:.c=.o}
 
 
