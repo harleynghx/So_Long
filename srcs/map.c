@@ -6,7 +6,7 @@
 /*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:35:31 by hang              #+#    #+#             */
-/*   Updated: 2024/07/19 22:29:47 by hang             ###   ########.fr       */
+/*   Updated: 2024/07/23 18:41:32 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ static int	width_counter(data *list)
 int	map_from_file(data *list, char *map)
 {
 	list->fd = open(map, O_RDONLY);
+	if (list->fd < 0)
+		return (0);
 	while (1)
 	{
 		if (!append_line_to_map(list, get_next_line(list->fd)))

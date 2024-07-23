@@ -6,11 +6,13 @@
 /*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 18:51:13 by hang              #+#    #+#             */
-/*   Updated: 2024/07/19 22:10:05 by hang             ###   ########.fr       */
+/*   Updated: 2024/07/23 15:56:46 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+// TODO check if the map is a square, mine only checks if is surrounded by walls, if is surround by double walls it will pass
 
 static void	surround_is_walls(data *list)
 {

@@ -20,26 +20,28 @@ typedef struct t_database
 	int		n_exit;
 	int		x_axis;
 	int		y_axis;
-	int		counter;
-	int		collectables;
+	int		steps_counter;
 	int		playerpos_y;
 	int		playerpos_x;
+	int		c_counter;
 
 	char	**map;
 
-
-	void	*floor;
-	void	*barrier;
-	void	*player;
-	void	*exit;
-	void	*collectable;
+	void	*img_floor;
+	void	*img_wall;
+	void	*img_player;
+	void	*img_exit;
+	void	*img_collectable;
 	void	*mlxpointer;
 	void	*winpointer;
 
 }			data;
 
-int			map_from_file(data *list, char *map);
-void		error_checker(data *list);
 int			exit_point(data *list);
+int			map_from_file(data *list, char *map);
+void		xpm_to_pointer(data *list);
+void		error_checker(data *list);
+void		load_images(data *list);
+int    		controls(int keycode, data *list);
 
 #endif
