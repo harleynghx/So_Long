@@ -6,13 +6,13 @@
 #    By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/09 01:02:08 by hang              #+#    #+#              #
-#    Updated: 2024/07/23 18:13:21 by hang             ###   ########.fr        #
+#    Updated: 2024/07/28 23:20:02 by hang             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 PROG	= so_long
 
-SRCS 	= srcs/so_long.c srcs/errors.c srcs/map.c srcs/graphics.c srcs/controls.c
+SRCS 	= srcs/so_long.c srcs/errors.c srcs/map.c srcs/graphics.c srcs/controls.c srcs/floodfill.c
 OBJS 	= ${SRCS:.c=.o}
 
 CC 		= gcc 

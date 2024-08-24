@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   printfwords.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/28 17:42:53 by hang              #+#    #+#             */
-/*   Updated: 2024/07/24 17:30:37 by hang             ###   ########.fr       */
+/*   Created: 2023/12/04 15:28:47 by hang              #+#    #+#             */
+/*   Updated: 2024/07/24 13:45:08 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+void	printfputchar(int c, int *length)
 {
-	int	i;
+	write(1, &c, 1);
+	(*length)++;
+}
+
+void	printfstring(char *str, int *length)
+{
+	size_t	i;
 
 	i = 0;
-	if (!s)
-		return (0);
-	if (c == '\0')
-		return ((char *)&s[ft_strlen(s)]);
-	while (s[i] != '\0')
+	if (str == NULL)
 	{
-		if (s[i] == (char)c)
-			return ((char *)&s[i]);
-		i++;
+		write(1, "(null)", 6);
+		(*length) += 6;
+		return ;
 	}
-	return (0);
+	while (str[i])
+		printfputchar(str[i++], length);
 }

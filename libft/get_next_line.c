@@ -6,66 +6,69 @@
 /*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 08:32:48 by hang              #+#    #+#             */
-/*   Updated: 2024/05/08 17:17:55 by hang             ###   ########.fr       */
+/*   Updated: 2024/07/26 20:55:34 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*cleanline(char *fd_str)
+static size_t	ft_strlen_gnl(char *s)
 {
-	int		i;
-	char	*str;
+	size_t	i;
 
 	i = 0;
-	if (!fd_str[i])
-		return (NULL);
-	while (fd_str[i] && fd_str[i] != '\n')
+	if (!s)
+		return (0);
+	while (s[i] != '\0')
 		i++;
-	str = malloc(sizeof(char) * (i + 2));
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (fd_str[i] && fd_str[i] != '\n')
-	{
-		str[i] = fd_str[i];
-		i++;
-	}
-	if (fd_str[i] == '\n')
-	{
-		str[i] = fd_str[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
+	return (i);
 }
 
-char	*delete_upto_nl(char *fd_str)
+static char	*ft_strchr_gnl(char *s, int c)
 {
-	int		i;
-	int		j;
-	char	*str;
+	int	i;
 
 	i = 0;
-	while (fd_str[i] && fd_str[i] != '\n')
-		i++;
-	if (!fd_str[i])
+	if (!s)
+		return (0);
+	if (c == '\0')
+		return ((char *)&s[ft_strlen_gnl(s)]);
+	while (s[i] != '\0')
 	{
-		free(fd_str);
-		return (NULL);
+		if (s[i] == (char)c)
+			return ((char *)&s[i]);
+		i++;
 	}
-	str = malloc(sizeof(char) * (ft_strlen(fd_str) - i + 1));
-	if (!str)
-		return (NULL);
-	i++;
+	return (0);
+}
+
+static char	*ft_strjoin_free(char *fd_str, char *buff)
+{
+	size_t	i;
+	size_t	j;
+	char	*str;
+
+	i = -1;
 	j = 0;
-	while (fd_str[i])
-		str[j++] = fd_str[i++];
-	str[j] = '\0';
+	if (!fd_str)
+	{
+		fd_str = (char *)malloc(1 * sizeof(char));
+		fd_str[0] = '\0';
+	}
+	if (!fd_str || !buff)
+		return (NULL);
+	str = malloc(sizeof(char) * ((ft_strlen_gnl(fd_str) + ft_strlen_gnl(buff)) + 1));
+	if (str == NULL)
+		return (NULL);
+	if (fd_str)
+		while (fd_str[++i])
+			str[i] = fd_str[i];
+	while (buff[j])
+		str[i++] = buff[j++];
+	str[i] = '\0';
 	free(fd_str);
 	return (str);
 }
-
 char	*readnjoin(int fd, char *fd_str)
 {
 	char	*buff;
@@ -75,7 +78,7 @@ char	*readnjoin(int fd, char *fd_str)
 	if (!buff)
 		return (NULL);
 	read_bytes = 1;
-	while (!ft_strchr(fd_str, '\n') && read_bytes != 0)
+	while (!ft_strchr_gnl(fd_str, '\n') && read_bytes != 0)
 	{
 		read_bytes = read(fd, buff, BUFFER_SIZE);
 		if (read_bytes == -1)
@@ -84,7 +87,7 @@ char	*readnjoin(int fd, char *fd_str)
 			return (NULL);
 		}
 		buff[read_bytes] = '\0';
-		fd_str = ft_strjoin(fd_str, buff);
+		fd_str = ft_strjoin_free(fd_str, buff);
 	}
 	free(buff);
 	return (fd_str);

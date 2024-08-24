@@ -10,7 +10,25 @@
 # include <string.h>
 # include <unistd.h>
 
-typedef struct t_database
+typedef struct s_point
+{
+	int y;
+	int x;
+} t_point;
+
+typedef struct s_floodfill
+{
+	int append;
+	int track;
+	int dir;
+	int dir_y[4];
+	int dir_x[4];
+	char **map;
+	int new_y;
+    int new_x;
+} t_floodfill;
+
+typedef struct s_data
 {
 	int		fd;
 	int		n_height;
@@ -24,24 +42,23 @@ typedef struct t_database
 	int		playerpos_y;
 	int		playerpos_x;
 	int		c_counter;
-
 	char	**map;
-
 	void	*img_floor;
 	void	*img_wall;
 	void	*img_player;
 	void	*img_exit;
-	void	*img_collectable;
+	void	*img_collectible;
 	void	*mlxpointer;
 	void	*winpointer;
 
-}			data;
+}			t_data;
 
-int			exit_point(data *list);
-int			map_from_file(data *list, char *map);
-void		xpm_to_pointer(data *list);
-void		error_checker(data *list);
-void		load_images(data *list);
-int    		controls(int keycode, data *list);
+int			exit_point(t_data *list);
+int			map_from_file(t_data *list, char *map);
+void		xpm_to_pointer(t_data *list);
+void		error_checker(t_data *list);
+void		load_images(t_data *list);
+int    		controls(int keycode, t_data *list);
+int		   	floodfill_iterative(t_data *list);
 
 #endif

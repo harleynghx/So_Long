@@ -6,13 +6,13 @@
 /*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 19:05:40 by hang              #+#    #+#             */
-/*   Updated: 2024/07/23 18:36:32 by hang             ###   ########.fr       */
+/*   Updated: 2024/08/19 13:36:59 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int	exit_point(data *list)
+int	exit_point(t_data *list)
 {
 	int	i;
 
@@ -23,18 +23,21 @@ int	exit_point(data *list)
 	while (i < list->n_height)
 		free(list->map[i++]);
 	free(list->map);
+	ft_printf("Exit Successful!\n");
 	exit(0);
 }
 
 int	main(int ac, char **av)
 {
-	data	list;
+	t_data	list;
 	if (ac != 2)
+	{
+		perror("Invalid Args");
 		return (0);
-	ft_memset(&list, 0, sizeof(data));
+	}
+	ft_memset(&list, 0, sizeof(t_data));
 	map_from_file(&list, av[1]);
 	error_checker(&list);
-	printf("hi");
 	list.mlxpointer = mlx_init();
 	list.winpointer = mlx_new_window(list.mlxpointer, (list.n_width * 85),
 			(list.n_height * 85), "cat and donuts");

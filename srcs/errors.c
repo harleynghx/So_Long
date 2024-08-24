@@ -6,7 +6,7 @@
 /*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 18:51:13 by hang              #+#    #+#             */
-/*   Updated: 2024/07/23 15:56:46 by hang             ###   ########.fr       */
+/*   Updated: 2024/08/19 13:35:53 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 // TODO check if the map is a square, mine only checks if is surrounded by walls, if is surround by double walls it will pass
 
-static void	surround_is_walls(data *list)
+static void	surround_is_walls(t_data *list)
 {
 	int	y;
 	int	x;
 
 	y = 0;
 	x = 0;
-	while (y < list->n_height)
+	while (y < list->n_height - 1)
 	{
-		if (list->map[y][0] != '1' && list->map[y][list->n_width - 1] != '1')
+		if (list->map[y][0] != '1' || list->map[y][list->n_width - 1] != '1')
 		{
 			perror("Error: Game must be surrounded by walls!");
 			exit_point(list);
@@ -32,7 +32,7 @@ static void	surround_is_walls(data *list)
 	}
 	while (x < list->n_width)
 	{
-		if (list->map[0][x] != '1' && list->map[list->n_height - 1][x] != '1')
+		if (list->map[0][x] != '1' || list->map[list->n_height - 1][x] != '1')
 		{
 			perror("Error: Game must be surrounded by walls!");
 			exit_point(list);
@@ -41,7 +41,7 @@ static void	surround_is_walls(data *list)
 	}
 }
 
-static void	validate_and_count_characters(data *list, int height, int width)
+static void	validate_and_count_characters(t_data *list, int height, int width)
 {
 	const char	*valid_chars;
 
@@ -66,33 +66,37 @@ static void	validate_and_count_characters(data *list, int height, int width)
 	}
 }
 
-void	validate_map_characters(data *list)
+void	validate_map_characters(t_data *list)
 {
 	int	x;
 	int	y;
 
 	x = 1;
 	y = 1;
-	while (y <= list->n_height - 2)
+	while (y <= list->n_height - 1)
 	{
-		while (x <= list->n_width - 2)
+		x = 1;
+		while (x <= list->n_width - 1)
 		{
 			validate_and_count_characters(list, y, x);
 			x++;
 		}
+		y++;
 	}
-	y++;
-	if (list->n_player != 1 || list->n_collectible <= 1 || list->n_exit != 1)
+	if (list->n_player != 1 && list->n_collectible >= 1 && list->n_exit != 1)
 	{
-		perror("The Numbers of player or exit must be == 1");
-        perror("THe Number of collectibles must be greater then 0");
+		ft_printf("The Number of player or exit must be == 1\n");
+        ft_printf("The Number of collectibles must be >= 1\n");
 		exit_point(list);
 	}
 }
 
-void	error_checker(data *list)
+void	error_checker(t_data *list)
 {
 	surround_is_walls(list);
 	validate_map_characters(list);
-    // TODO valid_path(&list);
+	if (floodfill_iterative(list) == 0)
+        printf("There is a valid path from the player to the exit.\n");
+	else 
+        printf("There is no valid path from the player to the exit.\n");
 }
