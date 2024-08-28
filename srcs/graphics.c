@@ -57,8 +57,9 @@ void	load_images(t_data *list)
 
 void	xpm_to_pointer(t_data *list)
 {
-	int i;
-	int x;
+	int	i;
+	int	x;
+
 	list->img_wall = mlx_xpm_file_to_image(list->mlxpointer, "images/wall.xpm",
 			&i, &x);
 	list->img_floor = mlx_xpm_file_to_image(list->mlxpointer,

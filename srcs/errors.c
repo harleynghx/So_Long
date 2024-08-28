@@ -3,16 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
+/*   By: hang <hang@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 18:51:13 by hang              #+#    #+#             */
-/*   Updated: 2024/08/19 13:35:53 by hang             ###   ########.fr       */
+/*   Updated: 2024/08/24 19:04:03 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-// TODO check if the map is a square, mine only checks if is surrounded by walls, if is surround by double walls it will pass
+/* TODO check if the map is a square,
+mine only checks if is surrounded by walls,
+	if is surround by double walls it will pass*/
+int	valid_move(t_data *list, int x, int y)
+{
+	if (list->map[y][x] == 'E')
+	{
+		if (list->c_counter < list->n_collectible)
+			return (0);
+		ft_printf("\nYou Have Won, Congrats!\n");
+		exit_point(list);
+	}
+	if (list->map[y][x] == '0')
+	{
+		list->map[y][x] = 'P';
+		list->playerpos_x = x;
+		list->playerpos_y = y;
+		list->steps_counter++;
+	}
+	if (list->map[y][x] == 'C')
+	{
+		list->map[y][x] = 'P';
+		list->playerpos_x = x;
+		list->playerpos_y = y;
+		list->steps_counter++;
+		list->c_counter++;
+	}
+	ft_printf("%i steps taken\n", list->steps_counter);
+	return (1);
+}
 
 static void	surround_is_walls(t_data *list)
 {
@@ -53,11 +82,11 @@ static void	validate_and_count_characters(t_data *list, int height, int width)
 		else if (list->map[height][width] == 'E')
 			list->n_exit++;
 		else if (list->map[height][width] == 'P')
-        {
+		{
 			list->n_player++;
-            list->playerpos_y = height;
-            list->playerpos_x = width;
-        }
+			list->playerpos_y = height;
+			list->playerpos_x = width;
+		}
 	}
 	else
 	{
@@ -66,7 +95,7 @@ static void	validate_and_count_characters(t_data *list, int height, int width)
 	}
 }
 
-void	validate_map_characters(t_data *list)
+static void	validate_map_characters(t_data *list)
 {
 	int	x;
 	int	y;
@@ -86,7 +115,7 @@ void	validate_map_characters(t_data *list)
 	if (list->n_player != 1 && list->n_collectible >= 1 && list->n_exit != 1)
 	{
 		ft_printf("The Number of player or exit must be == 1\n");
-        ft_printf("The Number of collectibles must be >= 1\n");
+		ft_printf("The Number of collectibles must be >= 1\n");
 		exit_point(list);
 	}
 }
@@ -96,7 +125,7 @@ void	error_checker(t_data *list)
 	surround_is_walls(list);
 	validate_map_characters(list);
 	if (floodfill_iterative(list) == 0)
-        printf("There is a valid path from the player to the exit.\n");
-	else 
-        printf("There is no valid path from the player to the exit.\n");
+		printf("There is a valid path from the player to the exit.\n");
+	else
+		printf("There is no valid path from the player to the exit.\n");
 }

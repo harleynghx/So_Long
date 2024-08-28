@@ -57,7 +57,8 @@ static char	*ft_strjoin_free(char *fd_str, char *buff)
 	}
 	if (!fd_str || !buff)
 		return (NULL);
-	str = malloc(sizeof(char) * ((ft_strlen_gnl(fd_str) + ft_strlen_gnl(buff)) + 1));
+	str = malloc(sizeof(char) * ((ft_strlen_gnl(fd_str) + ft_strlen_gnl(buff))
+				+ 1));
 	if (str == NULL)
 		return (NULL);
 	if (fd_str)
@@ -69,6 +70,7 @@ static char	*ft_strjoin_free(char *fd_str, char *buff)
 	free(fd_str);
 	return (str);
 }
+
 char	*readnjoin(int fd, char *fd_str)
 {
 	char	*buff;

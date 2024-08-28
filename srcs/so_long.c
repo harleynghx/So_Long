@@ -30,6 +30,7 @@ int	exit_point(t_data *list)
 int	main(int ac, char **av)
 {
 	t_data	list;
+
 	if (ac != 2)
 	{
 		perror("Invalid Args");

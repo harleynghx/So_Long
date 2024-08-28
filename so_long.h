@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hang <hang@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/24 19:04:26 by hang              #+#    #+#             */
+/*   Updated: 2024/08/24 19:04:35 by hang             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
 # include "libft/libft.h"
-# include "minilibx-linux/mlx.h"
 # include <errno.h>
 # include <fcntl.h>
+# include <mlx.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
@@ -12,21 +24,21 @@
 
 typedef struct s_point
 {
-	int y;
-	int x;
-} t_point;
+	int		y;
+	int		x;
+}			t_point;
 
 typedef struct s_floodfill
 {
-	int append;
-	int track;
-	int dir;
-	int dir_y[4];
-	int dir_x[4];
-	char **map;
-	int new_y;
-    int new_x;
-} t_floodfill;
+	int		append;
+	int		track;
+	int		dir;
+	int		dir_y[4];
+	int		dir_x[4];
+	char	**map;
+	int		new_y;
+	int		new_x;
+}			t_floodfill;
 
 typedef struct s_data
 {
@@ -58,7 +70,8 @@ int			map_from_file(t_data *list, char *map);
 void		xpm_to_pointer(t_data *list);
 void		error_checker(t_data *list);
 void		load_images(t_data *list);
-int    		controls(int keycode, t_data *list);
-int		   	floodfill_iterative(t_data *list);
+int			controls(int keycode, t_data *list);
+int			floodfill_iterative(t_data *list);
+int			valid_move(t_data *list, int x, int y);
 
 #endif

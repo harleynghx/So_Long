@@ -38,6 +38,7 @@ static int	append_line_to_map(t_data *list, char *row)
 static int	width_counter(t_data *list)
 {
 	size_t	width;
+
 	width = 0;
 	while (list->map[0][width])
 		width++;
@@ -48,12 +49,13 @@ static int	width_counter(t_data *list)
 
 int	map_from_file(t_data *list, char *map)
 {
-	char *str;
+	char	*str;
+
 	list->fd = open(map, O_RDONLY);
 	if (list->fd < 0)
 	{
 		perror("Invalid fd");
-		return (0);	
+		return (0);
 	}
 	while (1)
 	{
