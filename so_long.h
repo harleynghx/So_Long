@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hang <hang@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 19:04:26 by hang              #+#    #+#             */
-/*   Updated: 2024/08/24 19:04:35 by hang             ###   ########.fr       */
+/*   Updated: 2024/08/28 21:28:16 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "libft/libft.h"
 # include <errno.h>
 # include <fcntl.h>
-# include <mlx.h>
+# include "minilibx-linux/mlx.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
@@ -35,7 +35,6 @@ typedef struct s_floodfill
 	int		dir;
 	int		dir_y[4];
 	int		dir_x[4];
-	char	**map;
 	int		new_y;
 	int		new_x;
 }			t_floodfill;
@@ -55,6 +54,7 @@ typedef struct s_data
 	int		playerpos_x;
 	int		c_counter;
 	char	**map;
+	char 	**floodfill_map;
 	void	*img_floor;
 	void	*img_wall;
 	void	*img_player;

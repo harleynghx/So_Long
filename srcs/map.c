@@ -6,7 +6,7 @@
 /*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:35:31 by hang              #+#    #+#             */
-/*   Updated: 2024/08/19 13:36:53 by hang             ###   ########.fr       */
+/*   Updated: 2024/08/28 17:48:18 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static int	append_line_to_map(t_data *list, char *row)
 	while (i < list->n_height - 1)
 	{
 		temp[i] = list->map[i];
+		temp[i] = list->floodfill_map[i];
 		i++;
 	}
 	if (list->map)

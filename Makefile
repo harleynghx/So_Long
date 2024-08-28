@@ -6,9 +6,10 @@
 #    By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/09 01:02:08 by hang              #+#    #+#              #
-#    Updated: 2024/07/28 23:20:02 by hang             ###   ########.fr        #
+#    Updated: 2024/08/28 21:28:08 by hang             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 PROG	= so_long
 
@@ -26,8 +27,7 @@ all: 		${PROG}
 ${PROG}:	${OBJS}
 					@echo "\033[33m----Compiling lib----"
 					@make re -C ./libft
-					
-					@$(CC) ${OBJS} -framework OpenGL -framework AppKit -o ${PROG} -Llibft -lft -Lminilibx-linux -lmlx 
+					@$(CC) ${OBJS} -framework OpenGL -framework AppKit -o ${PROG} -Llibft -lft -Lminilibx-linux -L/opt/X11/lib -lmlx -lX11 -lXext
 clean:
 					@make clean -C ./libft
 					@rm -f ${OBJS}

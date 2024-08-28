@@ -1,0 +1,21 @@
+
+
+
+change header (laptop)
+
+# include "minilibx-linux/mlx.h"
+
+42 mac
+
+# include <mlx.h>
+
+
+Change the Makefile to this(Laptop)
+
+@$(CC) ${OBJS} -framework OpenGL -framework AppKit -o ${PROG} -Llibft -lft -Lminilibx-linux -L/opt/X11/lib -lmlx -lX11 -lXext
+
+
+42 mac
+
+@$(CC) ${OBJS} -framework OpenGL -framework AppKit -o ${PROG} -Llibft -lft -Lminilibx-linux -lmlx
+
