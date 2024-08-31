@@ -6,7 +6,7 @@
 /*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 19:04:26 by hang              #+#    #+#             */
-/*   Updated: 2024/08/28 21:28:16 by hang             ###   ########.fr       */
+/*   Updated: 2024/08/29 23:26:01 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,23 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+
+typedef struct s_point_c
+{
+	int		y;
+	int		x;
+}			t_point_c;
+
+typedef struct s_floodfill_c
+{
+	int		append;
+	int		track;
+	int		dir;
+	int		dir_y[4];
+	int		dir_x[4];
+	int		new_y;
+	int		new_x;
+}			t_floodfill_c;
 
 typedef struct s_point
 {
@@ -46,6 +63,7 @@ typedef struct s_data
 	int		n_width;
 	int		n_player;
 	int		n_collectible;
+	int 	n_collectibles_found;
 	int		n_exit;
 	int		x_axis;
 	int		y_axis;
@@ -72,6 +90,8 @@ void		error_checker(t_data *list);
 void		load_images(t_data *list);
 int			controls(int keycode, t_data *list);
 int			floodfill_iterative(t_data *list);
+int			floodfill_collectibles(t_data *list);
 int			valid_move(t_data *list, int x, int y);
+void		map_is_rectangle(t_data *list);
 
 #endif

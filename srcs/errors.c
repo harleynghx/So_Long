@@ -6,7 +6,7 @@
 /*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 18:51:13 by hang              #+#    #+#             */
-/*   Updated: 2024/08/28 21:22:14 by hang             ###   ########.fr       */
+/*   Updated: 2024/08/30 00:20:29 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,15 @@ void	error_checker(t_data *list)
 {
 	surround_is_walls(list);
 	validate_map_characters(list);
+	map_is_rectangle(list);
+	if (floodfill_collectibles(list) != list->n_collectible)
+	{
+		ft_printf("Invalid Game: One or more Collectibles are not reachable!\n");
+		exit_point(list);
+	}
 	if (floodfill_iterative(list) == 0)
-		printf("There is a valid path from the player to the exit.\n");
-	else
-		printf("There is no valid path from the player to the exit.\n");
+	{
+		printf("Invalid Game: Exit not reachable!\n");
+		exit_point(list);
+	}
 }

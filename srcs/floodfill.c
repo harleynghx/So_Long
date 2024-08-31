@@ -6,7 +6,7 @@
 /*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 17:11:43 by hang              #+#    #+#             */
-/*   Updated: 2024/08/28 21:24:07 by hang             ###   ########.fr       */
+/*   Updated: 2024/08/30 00:18:00 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,18 @@ static int	ff_iterative(t_data *list, t_point *queue, t_floodfill *ff_data)
 	{
 		current = queue[ff_data->track++];
 		if (list->floodfill_map[current.y][current.x] == 'E')
-			return (0);
+			return (1);
 		while (ff_data->dir < 4)
 		{
 			ff_data->new_y = current.y + ff_data->dir_y[ff_data->dir];
 			ff_data->new_x = current.x + ff_data->dir_x[ff_data->dir];
 			if (is_valid(list, ff_data->new_y, ff_data->new_x, list->floodfill_map))
 			{
+				printf("%c\n", list->floodfill_map[ff_data->new_y][ff_data->new_x]);
 				if (list->floodfill_map[ff_data->new_y][ff_data->new_x] == 'E')
-					return (0); // TODO
+				{
+					return (1); // TODO
+				}
 				list->floodfill_map[ff_data->new_y][ff_data->new_x] = '1';
 				queue[ff_data->append++] = (t_point){ff_data->new_y,
 					ff_data->new_x};
@@ -44,7 +47,7 @@ static int	ff_iterative(t_data *list, t_point *queue, t_floodfill *ff_data)
 		}
 		ff_data->dir = 0;
 	}
-	return (1);
+	return (0);
 }
 
 int	floodfill_iterative(t_data *list)
