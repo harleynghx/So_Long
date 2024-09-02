@@ -6,7 +6,7 @@
 /*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:35:31 by hang              #+#    #+#             */
-/*   Updated: 2024/08/29 22:35:26 by hang             ###   ########.fr       */
+/*   Updated: 2024/09/02 17:45:21 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	map_from_file(t_data *list, char *map)
 	if (list->fd < 0)
 	{
 		perror("Invalid fd");
-		return (0);
+		exit_point(list);
 	}
 	while (1)
 	{
@@ -95,7 +95,7 @@ void	map_is_rectangle(t_data *list)
             row_width--;
         if (row_width != list->n_width)
 		{
-			ft_printf("Map is not rectangle!\n");
+			ft_printf("Invalid Game: Map is not rectangle!\n");
             exit_point(list);
 		}
         i++;

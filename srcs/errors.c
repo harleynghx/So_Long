@@ -6,7 +6,7 @@
 /*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 18:51:13 by hang              #+#    #+#             */
-/*   Updated: 2024/08/30 00:20:29 by hang             ###   ########.fr       */
+/*   Updated: 2024/09/02 17:56:04 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	valid_move(t_data *list, int x, int y)
 	{
 		if (list->c_counter < list->n_collectible)
 			return (0);
-		ft_printf("\nYou Have Won, Congrats!\n");
+		ft_printf("You Have Won, Congrats!\n");
 		exit_point(list);
 	}
 	if (list->map[y][x] == '0')
@@ -54,7 +54,7 @@ static void	surround_is_walls(t_data *list)
 	{
 		if (list->map[y][0] != '1' || list->map[y][list->n_width - 1] != '1')
 		{
-			perror("Error: Game must be surrounded by walls!");
+			ft_printf("Invalid Map: Game must be surrounded by walls!\n");
 			exit_point(list);
 		}
 		y++;
@@ -63,7 +63,7 @@ static void	surround_is_walls(t_data *list)
 	{
 		if (list->map[0][x] != '1' || list->map[list->n_height - 1][x] != '1')
 		{
-			perror("Error: Game must be surrounded by walls!");
+			ft_printf("Invalid Map: Game must be surrounded by walls!\n");
 			exit_point(list);
 		}
 		x++;
@@ -90,7 +90,7 @@ static void	validate_and_count_characters(t_data *list, int height, int width)
 	}
 	else
 	{
-		// TODO perror("Invalid format: ")
+		ft_printf("Error: Unknown character!\n");
 		exit_point(list);
 	}
 }
@@ -112,10 +112,10 @@ static void	validate_map_characters(t_data *list)
 		}
 		y++;
 	}
-	if (list->n_player != 1 && list->n_collectible >= 1 && list->n_exit != 1)
+	if (list->n_player != 1 || list->n_collectible <= 0 || list->n_exit != 1)
 	{
-		ft_printf("The Number of player or exit must be == 1\n");
-		ft_printf("The Number of collectibles must be >= 1\n");
+		ft_printf("Invalid Game: The Number of player or exit must be == 1\n");
+		ft_printf("Invalid Gmae: The Number of collectibles must be >= 1\n");
 		exit_point(list);
 	}
 }
@@ -132,7 +132,7 @@ void	error_checker(t_data *list)
 	}
 	if (floodfill_iterative(list) == 0)
 	{
-		printf("Invalid Game: Exit not reachable!\n");
+		ft_printf("Invalid Game: Exit not reachable!\n");
 		exit_point(list);
 	}
 }

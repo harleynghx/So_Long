@@ -6,7 +6,7 @@
 /*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 17:11:43 by hang              #+#    #+#             */
-/*   Updated: 2024/08/30 00:18:00 by hang             ###   ########.fr       */
+/*   Updated: 2024/08/31 12:33:29 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static int	ff_iterative(t_data *list, t_point *queue, t_floodfill *ff_data)
 			ff_data->new_x = current.x + ff_data->dir_x[ff_data->dir];
 			if (is_valid(list, ff_data->new_y, ff_data->new_x, list->floodfill_map))
 			{
-				printf("%c\n", list->floodfill_map[ff_data->new_y][ff_data->new_x]);
 				if (list->floodfill_map[ff_data->new_y][ff_data->new_x] == 'E')
 				{
 					return (1); // TODO
