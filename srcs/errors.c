@@ -6,7 +6,7 @@
 /*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 18:51:13 by hang              #+#    #+#             */
-/*   Updated: 2024/09/02 17:56:04 by hang             ###   ########.fr       */
+/*   Updated: 2024/09/14 16:44:28 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,4 +135,7 @@ void	error_checker(t_data *list)
 		ft_printf("Invalid Game: Exit not reachable!\n");
 		exit_point(list);
 	}
+	ft_printf("hi");
+	if(list->map == NULL)
+		exit_point(list);
 }

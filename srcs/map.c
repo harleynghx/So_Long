@@ -6,7 +6,7 @@
 /*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:35:31 by hang              #+#    #+#             */
-/*   Updated: 2024/09/02 17:45:21 by hang             ###   ########.fr       */
+/*   Updated: 2024/09/14 17:29:29 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,10 @@ int	map_from_file(t_data *list, char *map)
 	}
 	close(list->fd);
 	list->n_height--;
+	if(list->map == NULL)
+		exit_point(list);
 	list->n_width = width_counter(list);
-	return (1);
+	return (0);
 }
 void	map_is_rectangle(t_data *list)
 {

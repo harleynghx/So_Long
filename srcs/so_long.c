@@ -6,7 +6,7 @@
 /*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 19:05:40 by hang              #+#    #+#             */
-/*   Updated: 2024/09/02 18:31:58 by hang             ###   ########.fr       */
+/*   Updated: 2024/09/14 16:45:14 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,13 @@ int	exit_point(t_data *list)
 int	main(int ac, char **av)
 {
 	t_data	list;
-	int i;
-
-	if (ac != 2)
+	
+	if (ac != 2 || ft_strncmp(av[1] + ft_strlen(av[1]) - 4, ".ber", 4))
 	{
 		perror("Invalid Args");
 		return (0);
 	}
-	i = ft_strlen(av[1]) - 4;
- 	if(ft_strncmp(av[1], ".ber", i))
-	{
-		ft_printf("file must end with .ber");
-		return (0);
-	}
-	ft_memset(&list, 0, sizeof(t_data));
+	ft_bzero(&list, sizeof(t_data));
 	map_from_file(&list, av[1]);
 	error_checker(&list);
 	list.mlxpointer = mlx_init();
