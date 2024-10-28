@@ -6,15 +6,12 @@
 /*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 18:51:13 by hang              #+#    #+#             */
-/*   Updated: 2024/09/14 16:44:28 by hang             ###   ########.fr       */
+/*   Updated: 2024/09/17 10:49:28 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-/* TODO check if the map is a square,
-mine only checks if is surrounded by walls,
-	if is surround by double walls it will pass*/
 int	valid_move(t_data *list, int x, int y)
 {
 	if (list->map[y][x] == 'E')
@@ -135,7 +132,4 @@ void	error_checker(t_data *list)
 		ft_printf("Invalid Game: Exit not reachable!\n");
 		exit_point(list);
 	}
-	ft_printf("hi");
-	if(list->map == NULL)
-		exit_point(list);
 }

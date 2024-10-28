@@ -6,7 +6,7 @@
 /*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 20:32:21 by hang              #+#    #+#             */
-/*   Updated: 2024/08/19 13:35:40 by hang             ###   ########.fr       */
+/*   Updated: 2024/09/17 10:28:46 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static int	right_movement(t_data *list)
 int	controls(int keycode, t_data *list)
 {
 	int	istrue;
-
+	
 	istrue = 0;
 	if (keycode == 53 || keycode == 65307)
 		exit_point(list);

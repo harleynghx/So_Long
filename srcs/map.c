@@ -6,7 +6,7 @@
 /*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:35:31 by hang              #+#    #+#             */
-/*   Updated: 2024/09/14 17:29:29 by hang             ###   ########.fr       */
+/*   Updated: 2024/09/17 10:17:33 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,41 @@ static void ft_freemap(t_data *list)
 		free(list->floodfill_map);
 	return;
 }
+
+static int	width_counter(t_data *list)
+{
+	size_t	width;
+
+	width = 0;
+	while (list->map[0][width])
+		width++;
+	if (list->map[0][width - 1] == '\n')
+		width--;
+	return (width);
+}
+
+void	map_is_rectangle(t_data *list)
+{
+    int i;
+	
+    i = 1;
+    while (i < list->n_height)
+    {
+        int row_width = 0;
+        while (list->map[i][row_width])
+            row_width++;
+        if (list->map[i][row_width - 1] == '\n')
+            row_width--;
+        if (row_width != list->n_width)
+		{
+			ft_printf("Invalid Game: Map is not rectangle!\n");
+            exit_point(list);
+		}
+        i++;
+    }
+    return ;
+}
+
 static int	append_line_to_map(t_data *list, char *row)
 {
 	int		i;
@@ -48,18 +83,6 @@ static int	append_line_to_map(t_data *list, char *row)
 	return (1);
 }
 
-static int	width_counter(t_data *list)
-{
-	size_t	width;
-
-	width = 0;
-	while (list->map[0][width])
-		width++;
-	if (list->map[0][width - 1] == '\n')
-		width--;
-	return (width);
-}
-
 int	map_from_file(t_data *list, char *map)
 {
 	char	*str;
@@ -82,25 +105,4 @@ int	map_from_file(t_data *list, char *map)
 		exit_point(list);
 	list->n_width = width_counter(list);
 	return (0);
-}
-void	map_is_rectangle(t_data *list)
-{
-    int i;
-	
-    i = 1;
-    while (i < list->n_height)
-    {
-        int row_width = 0;
-        while (list->map[i][row_width])
-            row_width++;
-        if (list->map[i][row_width - 1] == '\n')
-            row_width--;
-        if (row_width != list->n_width)
-		{
-			ft_printf("Invalid Game: Map is not rectangle!\n");
-            exit_point(list);
-		}
-        i++;
-    }
-    return ;
 }
