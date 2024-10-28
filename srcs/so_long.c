@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
+/*   By: hang <hang@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 19:05:40 by hang              #+#    #+#             */
-/*   Updated: 2024/09/14 16:45:14 by hang             ###   ########.fr       */
+/*   Updated: 2024/10/28 20:00:19 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	exit_point(t_data *list)
 int	main(int ac, char **av)
 {
 	t_data	list;
-	
+
 	if (ac != 2 || ft_strncmp(av[1] + ft_strlen(av[1]) - 4, ".ber", 4))
 	{
 		perror("Invalid Args");

@@ -6,7 +6,7 @@
 /*   By: hang <hang@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 23:00:18 by hang              #+#    #+#             */
-/*   Updated: 2024/10/28 19:39:21 by hang             ###   ########.fr       */
+/*   Updated: 2024/10/28 19:59:09 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,31 +20,31 @@ static int	is_valid_c(t_data *list, int row, int col, char **map)
 }
 
 static int	collectibles_iterative(t_data *list, t_point_c *queue,
-		t_floodfill_c *floodfill_data_c)
+		t_floodfill_c *ffc_d)
 {
 	t_point_c	current;
 
-	while (floodfill_data_c->track < floodfill_data_c->append)
+	while (ffc_d->track < ffc_d->append)
 	{
-		current = queue[floodfill_data_c->track++];
-		while (floodfill_data_c->dir < 4)
+		current = queue[ffc_d->track++];
+		while (ffc_d->dir < 4)
 		{
-			floodfill_data_c->new_y = current.y
-				+ floodfill_data_c->dir_y[floodfill_data_c->dir];
-			floodfill_data_c->new_x = current.x
-				+ floodfill_data_c->dir_x[floodfill_data_c->dir];
-			if (is_valid_c(list, floodfill_data_c->new_y,
-					floodfill_data_c->new_x, list->floodfill_map))
+			ffc_d->new_y = current.y
+				+ ffc_d->dir_y[ffc_d->dir];
+			ffc_d->new_x = current.x
+				+ ffc_d->dir_x[ffc_d->dir];
+			if (is_valid_c(list, ffc_d->new_y,
+					ffc_d->new_x, list->floodfill_map))
 			{
-				if (list->floodfill_map[floodfill_data_c->new_y][floodfill_data_c->new_x] == 'C')
+				if (list->floodfill_map[ffc_d->new_y][ffc_d->new_x] == 'C')
 					list->n_collectibles_found++;
-				list->floodfill_map[floodfill_data_c->new_y][floodfill_data_c->new_x] = 'v';
-				queue[floodfill_data_c->append++] = (t_point_c){floodfill_data_c->new_y,
-					floodfill_data_c->new_x};
+				list->floodfill_map[ffc_d->new_y][ffc_d->new_x] = 'v';
+				queue[ffc_d->append++] = (t_point_c){ffc_d->new_y,
+					ffc_d->new_x};
 			}
-			floodfill_data_c->dir++;
+			ffc_d->dir++;
 		}
-		floodfill_data_c->dir = 0;
+		ffc_d->dir = 0;
 	}
 	return (list->n_collectibles_found);
 }

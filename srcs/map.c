@@ -6,7 +6,7 @@
 /*   By: hang <hang@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:35:31 by hang              #+#    #+#             */
-/*   Updated: 2024/10/28 19:31:42 by hang             ###   ########.fr       */
+/*   Updated: 2024/10/28 19:59:57 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static int	append_line_to_map(t_data *list, char *row)
 
 int	map_from_file(t_data *list, char *map)
 {
-	char *str;
+	char	*str;
 
 	list->fd = open(map, O_RDONLY);
 	if (list->fd < 0)
