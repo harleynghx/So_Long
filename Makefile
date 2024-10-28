@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+         #
+#    By: hang <hang@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/09 01:02:08 by hang              #+#    #+#              #
-#    Updated: 2024/08/29 23:29:00 by hang             ###   ########.fr        #
+#    Updated: 2024/10/28 19:33:52 by hang             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ all: 		${PROG}
 ${PROG}:	${OBJS}
 					@echo "\033[33m----Compiling lib----"
 					@make re -C ./libft
-					@$(CC) ${OBJS} -framework OpenGL -framework AppKit -o ${PROG} -Llibft -lft -Lminilibx-linux -L/opt/X11/lib -lmlx -lX11 -lXext
+					@$(CC) ${OBJS} -framework OpenGL -framework AppKit -o ${PROG} -Llibft -lft -Lminilibx-linux -lmlx
 clean:
 					@make clean -C ./libft
 					@rm -f ${OBJS}

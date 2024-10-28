@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
+/*   By: hang <hang@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:35:31 by hang              #+#    #+#             */
-/*   Updated: 2024/09/17 10:17:33 by hang             ###   ########.fr       */
+/*   Updated: 2024/10/28 19:31:42 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-static void ft_freemap(t_data *list)
+static void	ft_freemap(t_data *list)
 {
-	if(list->map)
+	if (list->map)
 		free(list->map);
-	if(list->floodfill_map)
+	if (list->floodfill_map)
 		free(list->floodfill_map);
-	return;
+	return ;
 }
 
 static int	width_counter(t_data *list)
@@ -35,24 +35,25 @@ static int	width_counter(t_data *list)
 
 void	map_is_rectangle(t_data *list)
 {
-    int i;
-	
-    i = 1;
-    while (i < list->n_height)
-    {
-        int row_width = 0;
-        while (list->map[i][row_width])
-            row_width++;
-        if (list->map[i][row_width - 1] == '\n')
-            row_width--;
-        if (row_width != list->n_width)
+	int	i;
+	int	row_width;
+
+	i = 1;
+	while (i < list->n_height)
+	{
+		row_width = 0;
+		while (list->map[i][row_width])
+			row_width++;
+		if (list->map[i][row_width - 1] == '\n')
+			row_width--;
+		if (row_width != list->n_width)
 		{
 			ft_printf("Invalid Game: Map is not rectangle!\n");
-            exit_point(list);
+			exit_point(list);
 		}
-        i++;
-    }
-    return ;
+		i++;
+	}
+	return ;
 }
 
 static int	append_line_to_map(t_data *list, char *row)
@@ -85,7 +86,7 @@ static int	append_line_to_map(t_data *list, char *row)
 
 int	map_from_file(t_data *list, char *map)
 {
-	char	*str;
+	char *str;
 
 	list->fd = open(map, O_RDONLY);
 	if (list->fd < 0)
@@ -101,7 +102,7 @@ int	map_from_file(t_data *list, char *map)
 	}
 	close(list->fd);
 	list->n_height--;
-	if(list->map == NULL)
+	if (list->map == NULL)
 		exit_point(list);
 	list->n_width = width_counter(list);
 	return (0);

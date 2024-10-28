@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
+/*   By: hang <hang@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 18:51:13 by hang              #+#    #+#             */
-/*   Updated: 2024/09/17 10:49:28 by hang             ###   ########.fr       */
+/*   Updated: 2024/10/28 19:36:43 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void	error_checker(t_data *list)
 	map_is_rectangle(list);
 	if (floodfill_collectibles(list) != list->n_collectible)
 	{
-		ft_printf("Invalid Game: One or more Collectibles are not reachable!\n");
+		ft_printf("Invalid Game: Collectibles are not reachable!\n");
 		exit_point(list);
 	}
 	if (floodfill_iterative(list) == 0)

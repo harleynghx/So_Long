@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
+/*   By: hang <hang@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 19:04:26 by hang              #+#    #+#             */
-/*   Updated: 2024/08/29 23:26:01 by hang             ###   ########.fr       */
+/*   Updated: 2024/10/28 19:33:11 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "libft/libft.h"
 # include <errno.h>
 # include <fcntl.h>
-# include "minilibx-linux/mlx.h"
+# include <mlx.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>

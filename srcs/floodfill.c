@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   floodfill.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
+/*   By: hang <hang@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 17:11:43 by hang              #+#    #+#             */
-/*   Updated: 2024/09/04 18:49:58 by hang             ###   ########.fr       */
+/*   Updated: 2024/10/28 19:32:06 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-
 
 static int	is_valid(t_data *list, int row, int col, char **map)
 {
@@ -32,7 +31,8 @@ static int	ff_iterative(t_data *list, t_point *queue, t_floodfill *ff_data)
 		{
 			ff_data->new_y = current.y + ff_data->dir_y[ff_data->dir];
 			ff_data->new_x = current.x + ff_data->dir_x[ff_data->dir];
-			if (is_valid(list, ff_data->new_y, ff_data->new_x, list->floodfill_map))
+			if (is_valid(list, ff_data->new_y, ff_data->new_x,
+					list->floodfill_map))
 			{
 				if (list->floodfill_map[ff_data->new_y][ff_data->new_x] == 'E')
 					return (1); // TODO
