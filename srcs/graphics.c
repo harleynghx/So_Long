@@ -6,7 +6,7 @@
 /*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 18:44:16 by hang              #+#    #+#             */
-/*   Updated: 2024/10/29 18:02:06 by hang             ###   ########.fr       */
+/*   Updated: 2024/10/29 18:38:23 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 static void	put_image(t_data *list, int x, int y)
 {
+	if (list->map[y][x] == 'P')
+		mlx_put_image_to_window(list->mlxpointer, list->winpointer,
+			list->img_player, x * 85, y * 85);
 	if (list->map[y][x] == '1')
 		mlx_put_image_to_window(list->mlxpointer, list->winpointer,
 			list->img_wall, x * 85, y * 85);
@@ -38,14 +41,7 @@ void	load_images(t_data *list)
 	{
 		x = 0;
 		while (x < list->n_width)
-		{		
-			if (list->map[y][x] == 'P')
-				mlx_put_image_to_window(list->mlxpointer, list->winpointer,
-					list->img_player, x * 85, y * 85);
-			else
-				put_image(list, x, y);
-			x++;
-		}
+			put_image(list, x++, y);
 		y++;
 	}
 }
