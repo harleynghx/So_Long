@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floodfill.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hang <hang@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 17:11:43 by hang              #+#    #+#             */
-/*   Updated: 2024/10/28 19:32:06 by hang             ###   ########.fr       */
+/*   Updated: 2024/10/29 22:59:44 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	ff_iterative(t_data *list, t_point *queue, t_floodfill *ff_data)
 					list->floodfill_map))
 			{
 				if (list->floodfill_map[ff_data->new_y][ff_data->new_x] == 'E')
-					return (1); // TODO
+					return (1);
 				list->floodfill_map[ff_data->new_y][ff_data->new_x] = '1';
 				queue[ff_data->append++] = (t_point){ff_data->new_y,
 					ff_data->new_x};

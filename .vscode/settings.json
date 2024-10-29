@@ -1,0 +1,11 @@
+{
+    "C_Cpp.errorSquiggles": "disabled",
+    "python.formatting.provider": "c_formatter_42",
+
+    "python.formatting.c_formatter_42Path": "/Users/harleyng/Library/Python/3.9/lib/python/site-packages/c_formatter_42",
+    
+
+    "[c]": {
+        "editor.defaultFormatter": "keyhr.42-c-format"
+    }
+}
