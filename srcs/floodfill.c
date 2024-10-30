@@ -6,7 +6,7 @@
 /*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 17:11:43 by hang              #+#    #+#             */
-/*   Updated: 2024/10/29 22:59:44 by hang             ###   ########.fr       */
+/*   Updated: 2024/10/30 21:49:04 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	floodfill_iterative(t_data *list)
 {
 	t_point		*queue;
 	t_floodfill	ff_data;
+	int			result;
 
 	queue = (t_point *)malloc(sizeof(t_point) * (list->n_height
 				* list->n_width));
@@ -58,5 +59,6 @@ int	floodfill_iterative(t_data *list)
 		.append = 0, .track = 0, .dir = 0};
 	queue[ff_data.append++] = (t_point){list->playerpos_y, list->playerpos_x};
 	list->floodfill_map[list->playerpos_y][list->playerpos_x] = '1';
-	return (ff_iterative(list, queue, &ff_data));
+	result = ff_iterative(list, queue, &ff_data);
+	return (result);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floodfill_collectibles.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hang <hang@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hang <hang@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 23:00:18 by hang              #+#    #+#             */
-/*   Updated: 2024/10/28 19:59:09 by hang             ###   ########.fr       */
+/*   Updated: 2024/10/30 21:48:43 by hang             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	floodfill_collectibles(t_data *list)
 {
 	t_point_c		*queue;
 	t_floodfill_c	floodfill_data_c;
+	id_t			result;
 
 	queue = (t_point_c *)malloc(sizeof(t_point_c) * (list->n_height
 				* list->n_width));
@@ -61,5 +62,6 @@ int	floodfill_collectibles(t_data *list)
 	queue[floodfill_data_c.append++] = (t_point_c){list->playerpos_y,
 		list->playerpos_x};
 	list->floodfill_map[list->playerpos_y][list->playerpos_x] = 'v';
-	return (collectibles_iterative(list, queue, &floodfill_data_c));
+	result = collectibles_iterative(list, queue, &floodfill_data_c);
+	return (result);
 }
